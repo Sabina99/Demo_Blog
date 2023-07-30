@@ -1,0 +1,24 @@
+<div ng-controller="ArticlesController">
+    <h1>{{message}}</h1>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Title</th>
+            <th scope="col">Excerpt</th>
+            <th scope="col">Content</th>
+            <th scope="col">Active</th>
+            <th scope="col">Category</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="article in articles">
+            <th><a href="#/article/{{article.id}}">{{article.title}}</a></th>
+            <td>{{article.excerpt}}</td>
+            <td>{{article.content}}</td>
+            <td>{{!!article.active}}</td>
+            <td>{{article.category && article.category.name ? article.category.name : ''}}</td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
