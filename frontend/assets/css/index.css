@@ -1,0 +1,45 @@
+.multiselect-parent > div,
+.multiselect-parent {
+    width: 100%;
+}
+
+.multiselect-parent .dropdown-toggle {
+    width: 100%;
+    text-align: left;
+}
+
+.multiselect-parent .dropdown-toggle::after {
+    display: none;
+}
+
+.multiselect-parent label {
+    width: 100%;
+    color: black;
+    padding: 5px 12px;
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    margin: 0;
+}
+
+.multiselect-parent .active,
+.multiselect-parent label:hover {
+    background-color: rgb(240, 240, 240)
+}
+
+.multiselect-parent label span {
+    margin-left: 10px;
+}
+
+.multiselect-parent .dropdown-header {
+    padding: 5px 12px;
+}
+
+.form-select.ng-isolate-scope {
+    padding: 0;
+    margin-bottom: 1rem;
+}
+
+a:hover {
+    text-decoration: none;
+}

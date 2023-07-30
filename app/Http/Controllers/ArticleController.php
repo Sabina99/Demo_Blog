@@ -22,7 +22,6 @@ class ArticleController extends Controller
     public function show(string $id)
     {
         try {
-//            return Auth::check();
             $article = Article::with('tags')->find($id);
 
             if (!$article) {
