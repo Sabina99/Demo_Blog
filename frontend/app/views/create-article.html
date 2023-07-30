@@ -12,17 +12,19 @@
             <label for="content">Content</label>
             <textarea ng-model="articleForm.content" class="form-control" id="content" required></textarea>
         </div>
-        <select ng-model="articleForm.category" class="form-select" aria-label="Category">
-            <option ng-repeat="category in categories" value={{category.id}}>{{category.name}}</option>
-        </select>
+        <div></div>
 
-<!--        <div class="mb-3">-->
-<!--            <label for="file" class="form-label">Image</label>-->
-<!--            <input ng-model="articleForm.image" class="form-control" type="file" id="file">-->
-<!--        </div>-->
-        <select aria-label="tags" ng-model="articleForm.tags" class="selectpicker" multiple data-live-search="true">
-            <option ng-repeat="tag in tags">{{tag.name}}</option>
-        </select>
+        <div ng-dropdown-multiselect options="tags" selected-model="articleForm.tags" extra-settings="dropdownSettings" class="form-select"></div>
+        <div>
+            <select ng-model="articleForm.category" class="form-select" aria-label="Category">
+                <option ng-repeat="category in categories" value={{category.id}}>{{category.name}}</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="file" class="form-label">Image</label>
+            <input ng-model="articleForm.image" class="form-control" type="file" id="file">
+        </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>

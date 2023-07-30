@@ -20,7 +20,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::middleware(['cors'])->post('/login', [\App\Http\Controllers\AuthController::class, 'login'])->name('login');
 
-Route::middleware(['cors'])->post('/articles', [\App\Http\Controllers\ArticleController::class, 'store']);Route::middleware(['cors'])->put('/articles/{id}', [\App\Http\Controllers\ArticleController::class, 'update'])->middleware('jwt.auth');
+Route::middleware(['cors'])->get('/articles', [\App\Http\Controllers\ArticleController::class, 'index']);
+Route::middleware(['cors'])->get('/articles/{id}', [\App\Http\Controllers\ArticleController::class, 'show']);
+Route::middleware(['cors'])->post('/articles', [\App\Http\Controllers\ArticleController::class, 'store'])->middleware('jwt.auth');
+
+Route::middleware(['cors'])->put('/articles/{id}', [\App\Http\Controllers\ArticleController::class, 'update'])->middleware('jwt.auth');
 Route::middleware(['cors'])->put('/articles/{id}', [\App\Http\Controllers\ArticleController::class, 'update'])->middleware('jwt.auth');
 
 Route::middleware(['cors'])->get('/categories', [\App\Http\Controllers\CategoryController::class, 'index']);
