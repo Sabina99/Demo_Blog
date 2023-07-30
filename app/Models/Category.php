@@ -11,8 +11,8 @@ class Category extends Model
 
     protected $fillable = ['name'];
 
-    public function articles(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function articles(): \Illuminate\Database\Eloquent\Relations\HasOne
     {
-        return $this->belongsTo(Article::class);
+        return $this->hasOne(Article::class);
     }
 }

@@ -10,19 +10,13 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        if (!Auth::check()) {
-            // error not authorized
-        }
         $categories = Category::all();
         return $categories;
     }
 
     public function show(string $id)
     {
-        if (!Auth::check()) {
-            // error not authorized
-        }
-        $categorie = Category::find($id);
-        return $categorie;
+        $category = Category::find($id);
+        return $category;
     }
 }

@@ -11,9 +11,9 @@ class Article extends Model
 
     protected $fillable = ['title', 'excerpt', 'content', 'active', 'image', 'category_id'];
 
-    public function categories(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function category(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->hasMany(Category::class);
+        return $this->belongsTo(Category::class);
     }
 
     public function tags(): \Illuminate\Database\Eloquent\Relations\BelongsToMany

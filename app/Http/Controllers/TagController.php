@@ -9,7 +9,7 @@ class TagController extends Controller
 {
     public function index()
     {
-        $tags = Tag::with('articles')->get();
+        $tags = Tag::all();
         return $tags;
     }
 

@@ -15,7 +15,7 @@ class ArticleController extends Controller
 {
     public function index()
     {
-        $articles = Article::with('tags')->get();
+        $articles = Article::with('tags', 'category')->get();
         return $articles;
     }
 
@@ -64,13 +64,14 @@ class ArticleController extends Controller
                 'title' => $request->input('title'),
                 'excerpt' => $request->input('excerpt'),
                 'content' => $request->input('content'),
-                'active' => $request->input('active'),
+                'active' => true,
                 'image' => $request->file('file')->hashName(),
                 'category_id' => $request->input('category')
             ]);
 
             $tagIds = [];
-            foreach ($request->input('tags') as $tag) {
+
+            foreach (explode(',', $request->input('tags')) as $tag) {
                 if (Tag::where(['id' => $tag])->get()->first()) {
                     $tagIds[] = $tag;
                 }
@@ -82,7 +83,7 @@ class ArticleController extends Controller
             return $article;
         } catch (\Exception $e) {
             DB::rollBack();
-            return response()->json(['message' => $e->getMessage(), 'status' => $e->getCode()], $e->getCode());
+            return response()->json(['message' => $e->getMessage(), 'status' => $e->getCode() || 500], $e->getCode() || 500);
         }
     }
 
