@@ -9,7 +9,10 @@ angular.module('myApp', ['ngRoute', 'angularjs-dropdown-multiselect'])
       })
       .when('/article/:id', {
         templateUrl: 'app/views/article.html',
-        controller: 'ArticleController'
+        controller: 'ArticleController',
+        resolve : {
+          article: ($http, $route) => $http.get("https://blog_demo.local.test/api/articles/" + $route.current.params.id),
+        }
       })
       .when('/login', {
         templateUrl: 'app/views/login.html',

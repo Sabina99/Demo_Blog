@@ -80,3 +80,28 @@ a:hover {
     margin-right: 5px;
 }
 
+.article-image {
+    height: 50vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.article-title {
+    text-align: center;
+    font-size: 35px;
+}
+
+.article-tags-category-wrapper {
+    display: flex;
+    margin: 0 10px 20px;
+    justify-content: space-between;
+}
+
+.article-tags {
+    display: flex;
+}
+
+.article-content {
+    margin: 0 10px;
+}

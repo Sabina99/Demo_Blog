@@ -36,7 +36,15 @@ class ArticleController extends Controller
                 throw new \Exception("Article not found.", 404);
             }
 
-            return $article;
+            return response()->json([
+                'id' => $article->id,
+                'title' => $article->title,
+                'content' => $article->content,
+                'category' => $article->category->jsonSerialize(),
+                'tags' => $article->tags->jsonSerialize(),
+                'excerpt' => $article->excerpt,
+                'image' => '/storage/images/' . $article->image
+            ]);
         } catch (\Exception $e) {
             return response()->json(['message' => $e->getMessage(), 'status' => $e->getCode()], $e->getCode());
         }
