@@ -16,7 +16,15 @@ class ArticleController extends Controller
     public function index()
     {
         $articles = Article::with('tags', 'category')->get();
-        return $articles;
+        return $articles->map(fn (Article $article) => ([
+            'id' => $article->id,
+            'title' => $article->title,
+            'content' => $article->content,
+            'category' => $article->category->jsonSerialize(),
+            'tags' => $article->tags->jsonSerialize(),
+            'excerpt' => $article->excerpt,
+            'image' => '/storage/images/' . $article->image
+        ]));
     }
 
     public function show(string $id)

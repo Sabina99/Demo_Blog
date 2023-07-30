@@ -1,24 +1,28 @@
-<div ng-controller="ArticlesController">
-    <h1>{{message}}</h1>
-    <table class="table">
-        <thead>
-        <tr>
-            <th scope="col">Title</th>
-            <th scope="col">Excerpt</th>
-            <th scope="col">Content</th>
-            <th scope="col">Active</th>
-            <th scope="col">Category</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr ng-repeat="article in articles">
-            <th><a href="#/article/{{article.id}}">{{article.title}}</a></th>
-            <td>{{article.excerpt}}</td>
-            <td>{{article.content}}</td>
-            <td>{{!!article.active}}</td>
-            <td>{{article.category && article.category.name ? article.category.name : ''}}</td>
-        </tr>
-        </tbody>
-    </table>
+<div ng-controller="ArticlesController" class="container">
+    <h1 class="text-center">{{message}}</h1>
+    <div class="articles">
+        <div class="card" ng-repeat="article in articles">
+            <div class="card-img-top" style="background-image: url(https://blog_demo.local.test{{article.image}})"></div>
+            <div class="card-body">
+                <h5 class="card-title">{{article.title}}</h5>
+                <div class="subtitle-wrapper">
+                    <div class="category">
+                        <svg width="16" height="16" viewBox="0 0 20 20" fill="none" class="wl xm"><path d="M12.4 12.77l-1.81 4.99a.63.63 0 0 1-1.18 0l-1.8-4.99a.63.63 0 0 0-.38-.37l-4.99-1.81a.62.62 0 0 1 0-1.18l4.99-1.8a.63.63 0 0 0 .37-.38l1.81-4.99a.63.63 0 0 1 1.18 0l1.8 4.99a.63.63 0 0 0 .38.37l4.99 1.81a.63.63 0 0 1 0 1.18l-4.99 1.8a.63.63 0 0 0-.37.38z" fill="#FFC017"></path></svg>
+                        {{article.category ? article.category.name : ''}}
+                    </div>
+                    <p class="tags">
+                        <i ng-repeat="tag in article.tags track by $index">
+                            #{{tag.name}} {{article.tags.length - 1 !== $index ? ',' : '' }}
+                        </i>
+                    </p>
+                </div>
 
+                <p class="card-text">{{article.excerpt}}</p>
+
+                <div style="text-align: center">
+                    <a href="#/article/{{article.id}}" class="btn btn-primary">Read more</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
