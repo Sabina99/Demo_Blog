@@ -1,4 +1,7 @@
 <div class="container">
+    <div ng-if="isUserLoggedIn()" ng-click="editArticle()" class="edit-article-wrapper">
+        <div class="edit-article">Edit article</div>
+    </div>
     <div class="article-image" style="background-image: url(https://blog_demo.local.test{{article.image}})"></div>
     <div class="article-title">
         {{article.title}}

@@ -111,3 +111,19 @@ a:hover {
     font-size: 12px;
     font-weight: bold;
 }
+
+.edit-article-wrapper {
+    height: 50px;
+    background-color: lightgray;
+    display: flex;
+    cursor: pointer;
+}
+.edit-article-wrapper:hover {
+    background-color: gray;
+}
+
+.edit-article {
+    margin: auto;
+    color: white;
+    font-weight: bold;
+}

@@ -25,7 +25,6 @@ Route::middleware(['cors'])->get('/articles/{id}', [\App\Http\Controllers\Articl
 Route::middleware(['cors'])->post('/articles', [\App\Http\Controllers\ArticleController::class, 'store'])->middleware('jwt.auth');
 
 Route::middleware(['cors'])->put('/articles/{id}', [\App\Http\Controllers\ArticleController::class, 'update'])->middleware('jwt.auth');
-Route::middleware(['cors'])->put('/articles/{id}', [\App\Http\Controllers\ArticleController::class, 'update'])->middleware('jwt.auth');
 
 Route::middleware(['cors'])->get('/categories', [\App\Http\Controllers\CategoryController::class, 'index']);
 Route::middleware(['cors'])->get('/categories/{id}', [\App\Http\Controllers\CategoryController::class, 'show']);

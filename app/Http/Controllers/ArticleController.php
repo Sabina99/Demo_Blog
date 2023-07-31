@@ -56,7 +56,6 @@ class ArticleController extends Controller
             'title' => 'required',
             'excerpt' => 'required',
             'content' => 'required',
-            'active' => 'required',
             'tags' => 'required',
             'category' => 'required',
             'file' => 'required|image|mimes:jpg,png,jpeg'
@@ -104,11 +103,11 @@ class ArticleController extends Controller
     }
 
     public function update(Request $request, $id) {
+        return $request->all();
         $validator = Validator::make($request->all(), [
             'title' => 'required',
             'excerpt' => 'required',
             'content' => 'required',
-            'active' => 'required',
             'tags' => 'required',
             'category' => 'required',
         ]);

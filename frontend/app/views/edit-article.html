@@ -1,6 +1,6 @@
 <div class="container">
     <div class="article-title">
-        Create article
+        Edit article
     </div>
     <form ng-submit="submit()" enctype="multipart/form-data">
         <div class="form-group">
@@ -19,15 +19,13 @@
 
         <div>
             <label>Tags</label>
-            <div ng-dropdown-multiselect options="tags" selected-model="articleForm.tags" extra-settings="dropdownSettings" class="form-select"></div>
+            <div ng-dropdown-multiselect="" options="tags" selected-model="articleForm.tags" extra-settings="dropdownSettings" class="form-select"></div>
             <span class="submit-error" ng-if="tagError">{{tagError}}</span>
         </div>
 
         <div>
             <label>Category</label>
-            <select ng-model="articleForm.category" class="form-select" aria-label="Category" required>
-                <option ng-repeat="category in categories" value={{category.id}}>{{category.name}}</option>
-            </select>
+            <select ng-model="articleForm.category" class="form-select" aria-label="Category" ng-options="category.name for category in categories track by category.id" required></select>
             <span class="submit-error"  ng-if="categoryError">{{categoryError}}</span>
         </div>
 
