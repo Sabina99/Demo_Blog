@@ -7,6 +7,5 @@ angular.module('myApp')
         email: $scope.userEmail,
         password: $scope.userPassword
       })
-      console.log(AuthService.getToken())
     }
   })

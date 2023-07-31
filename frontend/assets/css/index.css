@@ -105,3 +105,9 @@ a:hover {
 .article-content {
     margin: 0 10px;
 }
+
+.submit-error {
+    color: red;
+    font-size: 12px;
+    font-weight: bold;
+}

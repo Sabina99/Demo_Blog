@@ -26,6 +26,20 @@ angular.module('myApp', ['ngRoute', 'angularjs-dropdown-multiselect'])
           tags: ($http) => $http.get("https://blog_demo.local.test/api/tags"),
         }
       })
+      .when('/tags', {
+        templateUrl: 'app/views/tags.html',
+        controller: 'TagsController',
+        resolve : {
+          tags: ($http) => $http.get("https://blog_demo.local.test/api/tags"),
+        }
+      })
+      .when('/categories', {
+        templateUrl: 'app/views/categories.html',
+        controller: 'CategoriesController',
+        resolve : {
+          categories: ($http) => $http.get("https://blog_demo.local.test/api/categories"),
+        }
+      })
       .otherwise({
         redirectTo: '/'
       });

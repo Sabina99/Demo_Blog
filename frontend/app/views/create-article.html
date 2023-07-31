@@ -14,16 +14,24 @@
         </div>
         <div></div>
 
-        <div ng-dropdown-multiselect options="tags" selected-model="articleForm.tags" extra-settings="dropdownSettings" class="form-select"></div>
         <div>
-            <select ng-model="articleForm.category" class="form-select" aria-label="Category">
+            <label>Tags</label>
+            <div ng-dropdown-multiselect options="tags" selected-model="articleForm.tags" extra-settings="dropdownSettings" class="form-select"></div>
+            <span class="submit-error" ng-if="tagError">{{tagError}}</span>
+        </div>
+
+        <div>
+            <label>Category</label>
+            <select ng-model="articleForm.category" class="form-select" aria-label="Category" required>
                 <option ng-repeat="category in categories" value={{category.id}}>{{category.name}}</option>
             </select>
+            <span class="submit-error"  ng-if="categoryError">{{categoryError}}</span>
         </div>
 
         <div class="mb-3">
             <label for="file" class="form-label">Image</label>
             <input class="form-control" type="file" id="file">
+            <span class="submit-error" ng-if="fileError">{{fileError}}</span>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>

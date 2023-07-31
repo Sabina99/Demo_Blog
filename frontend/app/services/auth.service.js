@@ -5,6 +5,7 @@ angular.module('myApp')
         .then(function (response) {
           if (response.data?.authorisation?.token) {
             $window.localStorage.setItem('token', response.data.authorisation.token);
+            $window.location.href = '#/';
           }
         })
         .catch(err => {

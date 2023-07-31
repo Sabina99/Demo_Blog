@@ -4,7 +4,6 @@ angular.module('myApp')
     $http.get("https://blog_demo.local.test/api/articles")
       .then(response => {
         $scope.articles = response.data;
-        console.log($scope.articles)
       })
       .catch(err => {
         console.log('ERROR: ', err)

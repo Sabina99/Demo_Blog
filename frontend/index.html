@@ -14,6 +14,8 @@
     <script src="app/controllers/createArticle.controller.js"></script>
     <script src="app/controllers/login.controller.js"></script>
     <script src="app/controllers/navBar.controller.js"></script>
+    <script src="app/controllers/tags.controller.js"></script>
+    <script src="app/controllers/categories.controller.js"></script>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
@@ -40,10 +42,16 @@
                 <li class="nav-item" ng-class="{ active: isActive('/')}">
                     <a class="nav-link" href="#/">Articles</a>
                 </li>
-                <li class="nav-item" ng-class="{ active: isActive('/create/article')}">
+                <li class="nav-item" ng-if="isUserLoggedIn()" ng-class="{ active: isActive('/create/article')}">
                     <a class="nav-link" href="#/create/article">Create</a>
                 </li>
-                <li class="nav-item" ng-class="{ active: isActive('/login')}">
+                <li class="nav-item" ng-if="isUserLoggedIn()" ng-class="{ active: isActive('/tags')}">
+                    <a class="nav-link" href="#/tags">Tags</a>
+                </li>
+                <li class="nav-item" ng-if="isUserLoggedIn()" ng-class="{ active: isActive('/categories')}">
+                    <a class="nav-link" href="#/categories">Categories</a>
+                </li>
+                <li class="nav-item" ng-if="!isUserLoggedIn()" ng-class="{ active: isActive('/login')}">
                     <a class="nav-link" href="#/login">Login</a>
                 </li>
             </ul>
