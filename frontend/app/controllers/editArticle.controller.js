@@ -46,8 +46,9 @@ angular.module('myApp')
         $scope.articleForm.category = $scope.articleForm.category.id ? $scope.articleForm.category.id : $scope.articleForm.category;
         let file = document.getElementById('file').files[0];
 
-        console.log($scope.articleForm)
         let fd = new FormData();
+
+        fd.append('_method', 'PUT');
         if (file) {
           fd.append('file', file);
         }
@@ -57,28 +58,33 @@ angular.module('myApp')
         fd.append('category', $scope.articleForm.category);
         fd.append('active', $scope.articleForm.active);
         fd.append('tags', $scope.articleForm.tags);
+        fd.append('_method', 'PUT');
 
-        console.log(fd)
-        $http.put("https://blog_demo.local.test/api/articles/" + $scope.article.id, fd, {
-          headers: {'Content-Type': "x-www-url-formurlencoded'"}
+        $http({
+          method: 'POST',
+          url: "https://blog_demo.local.test/api/articles/" + $scope.article.id,
+          data: fd,
+          headers: {
+            'Content-Type' : undefined
+          }
         })
-          .then(response => {
-            $scope.articleForm = {
-              title: "",
-              excerpt: "",
-              content: "",
-              file: null,
-              category: null,
-              active: true,
-              tags: []
-            };
-            if (response.data && response.data.id) {
-              $window.location.href = '#/article/' + response.data.id;
-            }
-          })
-          .catch(err => {
-            console.log('ERROR: ', err)
-          })
+        .then(response => {
+          $scope.articleForm = {
+            title: "",
+            excerpt: "",
+            content: "",
+            file: null,
+            category: null,
+            active: true,
+            tags: []
+          };
+          if (response.data && response.data.id) {
+            $window.location.href = '#/article/' + response.data.id;
+          }
+        })
+        .catch(err => {
+          console.log('ERROR: ', err)
+        })
       }
     }
   })

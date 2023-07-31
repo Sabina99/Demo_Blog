@@ -9,7 +9,7 @@ angular.module('myApp')
           }
         })
         .catch(err => {
-          console.log('EEROORRRRRRR', err)
+          console.log('ERROR: ', err)
         })
     }
     function isAuthenticated() {

@@ -103,7 +103,6 @@ class ArticleController extends Controller
     }
 
     public function update(Request $request, $id) {
-        return $request->all();
         $validator = Validator::make($request->all(), [
             'title' => 'required',
             'excerpt' => 'required',
@@ -118,12 +117,10 @@ class ArticleController extends Controller
             if ($validator->fails()) {
                 throw new \Exception($validator->errors()->first(), 422 );
             }
-
             if ($request->hasFile('file')) {
                 $validateImage = Validator::make($request->all(), [
                     'file' => 'required|image|mimes:jpg,png,jpeg'
                 ]);
-
 
                 if ($validateImage->fails()) {
                     throw new \Exception($validateImage->errors()->first(), 422 );
@@ -135,7 +132,6 @@ class ArticleController extends Controller
                         'title' => $request->input('title'),
                         'excerpt' => $request->input('excerpt'),
                         'content' => $request->input('content'),
-                        'active' => $request->input('active'),
                         'image' => $request->file('file')->hashName(),
                         'category_id' => $request->input('category')
                     ]);
@@ -145,7 +141,6 @@ class ArticleController extends Controller
                         'title' => $request->input('title'),
                         'excerpt' => $request->input('excerpt'),
                         'content' => $request->input('content'),
-                        'active' => $request->input('active'),
                         'category_id' => $request->input('category')
                     ]);
             }
