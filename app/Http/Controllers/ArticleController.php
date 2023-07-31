@@ -15,16 +15,20 @@ class ArticleController extends Controller
 {
     public function index()
     {
-        $articles = Article::with('tags', 'category')->get();
-        return $articles->map(fn (Article $article) => ([
-            'id' => $article->id,
-            'title' => $article->title,
-            'content' => $article->content,
-            'category' => $article->category->jsonSerialize(),
-            'tags' => $article->tags->jsonSerialize(),
-            'excerpt' => $article->excerpt,
-            'image' => '/storage/images/' . $article->image
-        ]));
+        try {
+            $articles = Article::with('tags', 'category')->get();
+            return $articles->map(fn (Article $article) => ([
+                'id' => $article->id,
+                'title' => $article->title,
+                'content' => $article->content,
+                'category' => $article->category->jsonSerialize(),
+                'tags' => $article->tags->jsonSerialize(),
+                'excerpt' => $article->excerpt,
+                'image' => '/storage/images/' . $article->image
+            ]));
+        } catch (\Exception $e) {
+            return response()->json(['message' => $e->getMessage(), 'status' => $e->getCode()], $e->getCode());
+        }
     }
 
     public function show(string $id)
@@ -98,7 +102,7 @@ class ArticleController extends Controller
             return $article;
         } catch (\Exception $e) {
             DB::rollBack();
-            return response()->json(['message' => $e->getMessage(), 'status' => $e->getCode() || 500], $e->getCode() || 500);
+            return response()->json(['message' => $e->getMessage()], 500);
         }
     }
 

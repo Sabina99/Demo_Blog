@@ -5,4 +5,7 @@
     <ul>
         <li ng-repeat="tag in tags">{{tag.name}}</li>
     </ul>
+    <div ng-if="error" class="alert alert-danger" role="alert">
+        error
+    </div>
 </div>

@@ -10,13 +10,21 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        $categories = Category::all();
-        return $categories;
+        try {
+            $categories = Category::all();
+            return $categories;
+        } catch (\Exception $e) {
+            return response()->json(['message' => $e->getMessage(), 'status' => $e->getCode() || 500], $e->getCode() || 500);
+        }
     }
 
     public function show(string $id)
     {
-        $category = Category::find($id);
-        return $category;
+        try {
+            $category = Category::find($id);
+            return $category;
+        } catch (\Exception $e) {
+            return response()->json(['message' => $e->getMessage(), 'status' => $e->getCode() || 500], $e->getCode() || 500);
+        }
     }
 }

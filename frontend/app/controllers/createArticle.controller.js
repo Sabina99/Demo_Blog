@@ -1,5 +1,8 @@
 angular.module('myApp')
-  .controller('CreateArticleController', function($scope, $http, $window, AuthService, categories, tags) {
+
+  .controller('CreateArticleController', function($scope, $http, $window, $timeout, AuthService, categories, tags) {
+
+    $scope.error = "";
     if (!AuthService.isAuthenticated()) {
       $window.location.href = '#/articles';
     } else {
@@ -76,7 +79,11 @@ angular.module('myApp')
                 }
               })
               .catch(err => {
-                console.log('ERROR: ', err)
+                console.error('ERROR: ', err);
+                $scope.error = err.data.message;
+                $timeout(function() {
+                  $scope.error = ''
+                }, 3000);
               })
           }
         }

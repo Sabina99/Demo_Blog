@@ -1,11 +1,20 @@
 angular.module('myApp')
-  .controller('LoginController', function($scope, AuthService) {
+  .controller('LoginController', function($scope, $timeout, AuthService) {
     $scope.userPassword = '';
     $scope.userEmail = '';
     $scope.login = function() {
-      AuthService.loginUser({
-        email: $scope.userEmail,
-        password: $scope.userPassword
-      })
+      try {
+        AuthService.loginUser({
+          email: $scope.userEmail,
+          password: $scope.userPassword
+        })
+      } catch (err) {
+        console.error('ERROR: ', err)
+        $scope.error = err.message;
+
+        $timeout(function() {
+          $scope.error = ''
+        }, 3000);
+      }
     }
   })
