@@ -78,6 +78,7 @@ angular.module('myApp')
             active: true,
             tags: []
           };
+          console.log(response.data)
           if (response.data && response.data.id) {
             $window.location.href = '#/article/' + response.data.id;
           }

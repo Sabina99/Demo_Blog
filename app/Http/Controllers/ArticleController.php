@@ -96,6 +96,7 @@ class ArticleController extends Controller
                 }
             }
 
+            $article->tags()->detach($article->tags);
             $article->tags()->attach($tagIds);
 
             DB::commit();
@@ -131,22 +132,44 @@ class ArticleController extends Controller
                 }
 
                 $request->file('file')->store('images', 'public');
-                $article = Article::where('id', $id)
-                    ->update([
-                        'title' => $request->input('title'),
-                        'excerpt' => $request->input('excerpt'),
-                        'content' => $request->input('content'),
-                        'image' => $request->file('file')->hashName(),
-                        'category_id' => $request->input('category')
-                    ]);
+
+                $article = Article::find($id);
+                $article->update([
+                    'title' => $request->input('title'),
+                    'excerpt' => $request->input('excerpt'),
+                    'content' => $request->input('content'),
+                    'image' => $request->file('file')->hashName(),
+                    'category_id' => $request->input('category')
+                ]);
+
+                $tagIds = [];
+
+                foreach (explode(',', $request->input('tags')) as $tag) {
+                    if (Tag::where(['id' => $tag])->get()->first()) {
+                        $tagIds[] = $tag;
+                    }
+                }
+
+                $article->tags()->detach($article->tags);
+                $article->tags()->attach($tagIds);
             } else {
-                $article = Article::where('id', $id)
-                    ->update([
-                        'title' => $request->input('title'),
-                        'excerpt' => $request->input('excerpt'),
-                        'content' => $request->input('content'),
-                        'category_id' => $request->input('category')
-                    ]);
+                $article = Article::find($id);
+                $article->update([
+                    'title' => $request->input('title'),
+                    'excerpt' => $request->input('excerpt'),
+                    'content' => $request->input('content'),
+                    'category_id' => $request->input('category')
+                ]);
+
+                $tagIds = [];
+
+                foreach (explode(',', $request->input('tags')) as $tag) {
+                    if (Tag::where(['id' => $tag])->get()->first()) {
+                        $tagIds[] = $tag;
+                    }
+                }
+                $article->tags()->detach($article->tags);
+                $article->tags()->attach($tagIds);
             }
             DB::commit();
             return $article;
