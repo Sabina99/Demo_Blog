@@ -1,5 +1,8 @@
 angular.module('myApp')
-  .controller('TagsController', function($scope, $http, tags) {
-    $scope.tags = tags.data;
-    console.log(tags)
+  .controller('TagsController', function($scope, $http, $window, AuthService, tags) {
+    if (!AuthService.isAuthenticated()) {
+      $window.location.href = '#/articles';
+    } else {
+      $scope.tags = tags.data;
+    }
   })
